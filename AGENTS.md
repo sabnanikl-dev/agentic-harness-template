@@ -70,12 +70,19 @@ docs/
 - No placeholder implementations — full implementations only
 - Parse, don't validate — type safety at boundaries
 - Follow existing naming conventions
+- **Search before implementing** — use `rg` / `grep` to check if similar code already exists
 
 ## Loop Termination
 
-- Max 2 review-fix cycles per PR. Escalate to human if exceeded.
+- **One cycle = review + fix.** Max 2 cycles total (initial build + 2 review rounds).
+- Escalate to human if exceeded.
 - Evaluator outputs only BLOCKING issues with file:line references.
 - Orchestrator can short-circuit false positives from evaluator.
+
+## Merge Conflicts
+
+- **Trivial conflicts** (lockfiles, generated code, import order) — auto-resolve, keep all changes, regenerate if needed.
+- **Semantic conflicts** (business logic, component APIs, schema changes) — escalate to human with summary of each branch's changes and a recommended action.
 
 ## Verification (Non-Negotiable)
 

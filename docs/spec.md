@@ -67,3 +67,7 @@ Every issue should have testable ACs. Example:
 - API docs: `docs/api/`
 - Friction log: `docs/friction/`
 - Conventions: `docs/conventions/`
+
+## Spec Drift Convention
+
+Every PR that changes architecture MUST update this file. If the architecture section or tech stack changes, update `docs/spec.md` in the same PR. This prevents the spec from becoming stale.
