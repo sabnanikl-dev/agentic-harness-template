@@ -19,6 +19,20 @@
 4. **Human gate is load-bearing.** No automated merges.
 5. **If it's not in the repo, it doesn't exist.** No Slack, no Notion, no Google Docs.
 
+## Template vs Task Harness
+
+Before editing, identify whether this repo is still the reusable template or has been cloned for a specific task/client.
+
+If this is the reusable template:
+- Keep examples generic.
+- Do not add client names, Linear issue IDs, pilot-specific status files, or one-off reviewer verdicts.
+- Use placeholders instead of task-specific facts.
+
+If this has been cloned for a specific task/client:
+- Task-specific notes are allowed in the appropriate `docs/`, `outputs/`, or evidence folders.
+- Keep approval-needed items clearly labeled.
+- Do not perform live/client/account changes unless explicitly approved.
+
 ## Session Start (Orientation)
 
 Every session begins with explicit state reconstruction:
