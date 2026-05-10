@@ -8,8 +8,8 @@
 |-------|------|
 | **Human** | Vision + taste. Approves via go/no-go. |
 | **Orchestrator** (e.g., Hermes) | Reads issues, spawns builders, reviews, reports. |
-| **Builder** (e.g., Claude Code) | Implements features. |
-| **Evaluator** (e.g., Codex) | Technical review only. |
+| **Builder** (e.g., Claude Code) | Implements features and keeps repo docs accurate when implementation changes the contract. |
+| **Evaluator** (e.g., Codex) | Technical review only; flags stale or missing docs when they would mislead the next builder. |
 
 ## Core Rules
 
@@ -70,11 +70,29 @@ Every session begins with explicit state reconstruction:
 AGENTS.md      # This file — process rules (slim, reusable)
 docs/
 ├── spec.md    # Project context (living document)
+├── build-plan.md # Lean phase / issue-slicing plan
 ├── design/    # Brand, inspiration, screenshots
 ├── api/       # Schemas, endpoints
 ├── friction/  # Running logs — what broke, how fixed
 └── conventions/ # Code style, naming, golden principles
 ```
+
+## Harness Stewardship
+
+Once work starts, the harness is a working contract. Builder and evaluator jointly own keeping repo docs accurate enough for the next fresh session.
+
+Update docs in the same PR when a change alters scope, setup, file paths, conventions, verification, approval gates, or known friction. If a doc cannot be fully reconciled, leave a clear `TODO:` with the missing decision/source instead of letting drift hide.
+
+Files that commonly drift:
+- `AGENTS.md` — process rules proven by practice
+- `docs/spec.md` — scope, constraints, approval gates, AC
+- `docs/build-plan.md` — phase plan and sequencing, when present
+- `docs/conventions/` — code style, naming, patterns
+- `docs/friction/` — non-obvious breakage and prevention
+
+Skills, tools, and agent-specific references are optional accelerators unless explicitly listed as project requirements. Required constraints must live in repo docs and issues, not in one agent's private memory or local skill library.
+
+If the harness is wrong, fix the harness — do not work around it silently.
 
 ## Golden Principles (Anti-AI-Slop)
 
@@ -101,7 +119,11 @@ docs/
 ## Verification (Non-Negotiable)
 
 **Post-push:** `gh pr view <N> --json commits` — confirm commit landed.
-**Post-merge:** `gh pr view <N> --json merged,state` — confirm `"merged": true` before reporting success.
+**Post-merge:** re-query the PR via REST and confirm `"merged": true` before reporting success:
+
+```bash
+gh api repos/<owner>/<repo>/pulls/<N> --jq '{state, merged, merged_at, merge_commit_sha}'
+```
 
 ## Communication
 

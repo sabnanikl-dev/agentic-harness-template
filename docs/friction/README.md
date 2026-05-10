@@ -45,4 +45,12 @@ PR #30 merged first and added `CLAUDE.md`, which conflicted with changes in the 
 
 ## Rule of Thumb
 
+Log friction only when it teaches the next agent something reusable; do not log routine progress.
+
+Good triggers:
+- Review blocker revealed a reusable pitfall.
+- Merge/rebase/stacked PR required special handling.
+- A command in the harness was wrong.
+- Approval/data/source assumptions caused risk.
+
 If you spent more than 10 minutes figuring something out, document it here.

@@ -35,6 +35,7 @@ Human: "work on issue #42"
 |------|---------|
 | `AGENTS.md` | Process bible. All agents read before starting. |
 | `docs/spec.md` | Living project context. Updated as work progresses. |
+| `docs/build-plan.md` | Lean phase plan, gates, and PR handoff checklist. |
 | `docs/design/` | Brand guidelines, inspiration, screenshots |
 | `docs/api/` | API schemas, endpoints |
 | `docs/friction/` | Running logs — what broke and how we fixed it |

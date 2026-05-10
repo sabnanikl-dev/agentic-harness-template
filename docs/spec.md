@@ -65,6 +65,7 @@ Every issue should have testable ACs. Example:
 
 - Design docs: `docs/design/`
 - API docs: `docs/api/`
+- Build plan: `docs/build-plan.md`
 - Friction log: `docs/friction/`
 - Conventions: `docs/conventions/`
 
